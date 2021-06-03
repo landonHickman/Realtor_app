@@ -26,6 +26,11 @@ const Realtors = () => {
     setRealtors(updatedRealtor)
   }
 
+  const editRealtor = (real) => {
+    let updatedRealtor = realtors.map (r => r.id === real.id ? real : r)
+    setRealtors(updatedRealtor)
+  }
+
   const DeleteRealtor = async (id) => {
     await axios.delete(`/api/realtors/${id}`)
     let del = realtors.filter (real => real.id !== id)
@@ -34,7 +39,7 @@ const Realtors = () => {
 
   const renderRealtors = () => {
     return realtors.map( real => {
-      return <Realtor key={real.id} {...real} DeleteRealtor={DeleteRealtor}/>
+      return <Realtor key={real.id} {...real} DeleteRealtor={DeleteRealtor} editRealtor={editRealtor}/>
     })
   }
 
