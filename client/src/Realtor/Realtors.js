@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
+import Realtor from './Realtor'
 
 const Realtors = () => {
   const [realtors, setRealtors] = useState([])
@@ -18,16 +19,15 @@ const Realtors = () => {
     }
   }
   
+  const DeleteRealtor = async (id) => {
+    await axios.delete(`/api/realtors/${id}`)
+    let del = realtors.filter (real => real.id !== id)
+    setRealtors(del)
+  }
+
   const renderRealtors = () => {
     return realtors.map( real => {
-      return (
-        <div key={real.id}>
-          <h2>{real.name}</h2>
-          <h4>{real.license ? 'Licensed Realtor' : 'Unlicensed Realtor'}</h4>
-          <h3>Rating:</h3>
-          <h4>{real.rating}</h4>
-        </div>
-      )
+      return <Realtor key={real.id} {...real} DeleteRealtor={DeleteRealtor}/>
     })
   }
 
