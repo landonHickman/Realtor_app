@@ -47,7 +47,7 @@ const Realtors = () => {
     <div style={{textAlign: 'center'}}>
       <h1>Realtors</h1>
       <button onClick={()=>setShowForm(!showForm)}>Add Realtor</button>
-      {showForm && <RealtorForm addRealtor={addRealtor}/>}
+      {showForm && <RealtorForm addRealtor={addRealtor} setShowForm={setShowForm} showForm={showForm}/>}
       {renderRealtors()}
     </div>
   )

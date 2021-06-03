@@ -14,7 +14,6 @@ const RealtorForm = (props) => {
       if(id){
         let res = await axios.put(`/api/realtors/${id}`, {name, license, rating})
         editRealtor(res.data)
-        console.log(res.data)
       } else {
         let res = await axios.post(`/api/realtors`, {name, license, rating})
         addRealtor(res.data)
