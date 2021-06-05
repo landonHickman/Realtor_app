@@ -1,11 +1,12 @@
 import React from 'react'
+import Homes from '../Home/Homes'
 
-const Home = () => {
+const Main = () => {
   return(
     <div style={{textAlign: 'center'}}>
-      <h1>Home</h1>
+      <Homes />
     </div>
   )
 }
 
-export default Home
+export default Main
