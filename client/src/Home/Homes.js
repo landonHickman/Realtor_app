@@ -26,9 +26,19 @@ const Homes = () => {
     setHomes([home, ...homes])
   }
 
+  const editHome = (home) => {
+    let updatedEdit = homes.map (h => h.id === home.id ? home : h)
+    setHomes(updatedEdit)
+  }
+
+  const deleteHome = async (id) => {
+    let res = await axios.delete(`/api/homes/${id}`)
+    setHomes( homes.filter (h => h.id !== res.data.id))
+  }
+
   const renderHomes = () => {
     return homes.map (home => {
-      return <Home key={home.id} {...home}/>
+      return <Home key={home.id} {...home} editHome={editHome} deleteHome={deleteHome}/>
     })
   }
 
